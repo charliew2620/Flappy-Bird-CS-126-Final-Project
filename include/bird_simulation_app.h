@@ -15,7 +15,7 @@ using std::vector;
  */
 class FlappyBirdApp : public ci::app::App {
   const int kWindowSize = 900;
-  const int kMargin = 100;
+  const int kMargin = 80;
 
  public:
   /**
@@ -26,7 +26,7 @@ class FlappyBirdApp : public ci::app::App {
   /**
    * Calls PopulateContainer() to populate container with particles.
    */
-  //void setup() override;
+  void setup() override;
 
   /**
    * Draws the background of the window.
@@ -46,6 +46,8 @@ class FlappyBirdApp : public ci::app::App {
   
   int frames_passed_ = 0;
   float kPipeWidth = 75;
+  
+  void ErasePastPipes();
 };
 
 }  // namespace flappybird

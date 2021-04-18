@@ -22,14 +22,12 @@ void Bird::UpdateBird() {
   }
   velocity_ += acceleration_;
   position_.y += velocity_;
-  Draw();
 }
 
 void Bird::ChangeBirdOnSpace() {
   acceleration_ = 0;
   velocity_ = -kGravity * kRatio;
   position_.y += velocity_;
-  Draw();
 }
 
 const vec2 &Bird::GetPosition() const {

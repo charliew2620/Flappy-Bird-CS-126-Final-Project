@@ -15,22 +15,27 @@ class Pipe {
   /**
    * TODO: Add more parameters to this constructor, and add documentation.
    */
-  Pipe(const float& width, const float& window_size);
+  Pipe(const float& width, const float& window_size, const float& margin);
 
   /**
    * Displays the container walls and the current positions of the particles.
    */
-  void Display() const;
+  void Draw();
 
   /**
    * Updates the positions and velocities of all particles (based on the rules
    * described in the assignment documentation).
    */
   void AdvanceOneFrame();
+  
+  const float& GetPipeFramesPassed() const;
 
  private:
   float width_;
+  float spawn_point_;
   float window_size_;
+  
+  float frames_passed_ = 0;
   
   
 };

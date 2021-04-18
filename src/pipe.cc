@@ -4,18 +4,23 @@ namespace flappybird {
 
 using glm::vec2;
 
-Pipe::Pipe(const float& width, const float& window_size) {
+Pipe::Pipe(const float& width, const float& window_size, const float& margin) {
   width_ = width;
   window_size_ = window_size;
+  spawn_point_ = window_size + margin;
 }
 
-void Pipe::Display() const {
-  // This function has a lot of magic numbers; be sure to design your code in a way that avoids this.
+void Pipe::Draw() {
   ci::gl::color(ci::Color("green"));
-  ci::gl::drawSolidRect(ci::Rectf(vec2(100, 0), vec2(100- width_, window_size_)));
+  ci::gl::drawSolidRect(ci::Rectf(vec2(spawn_point_, 0), vec2(spawn_point_ + width_, window_size_)));
 }
 
 void Pipe::AdvanceOneFrame() {
+  frames_passed_++;
+  spawn_point_ -= 2;
+}
+const float &Pipe::GetPipeFramesPassed() const {
+  return frames_passed_;
 }
 
 }  // namespace flappybird
