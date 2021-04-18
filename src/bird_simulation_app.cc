@@ -8,14 +8,24 @@ FlappyBirdApp::FlappyBirdApp() {
 }
 
 void FlappyBirdApp::draw() {
-  ci::Color background_color("black");
+  ci::Color background_color("aqua");
   ci::gl::clear(background_color);
 
-  pipe_.Display();
+  //pipe_.Display();
+  bird_.Draw();
 }
 
 void FlappyBirdApp::update() {
-  pipe_.AdvanceOneFrame();
+  bird_.UpdateBird(); 
+  //pipe_.AdvanceOneFrame();
+}
+
+void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
+  switch ((event.getCode())) {
+    case ci::app::KeyEvent::KEY_SPACE:
+      bird_.ChangeBirdOnSpace();
+      break;
+  }
 }
 
 }  // namespace flappybird 

@@ -2,49 +2,50 @@
 
 namespace flappybird {
 
-Bird::Bird(const glm::vec2 &position,
-           const glm::vec2 &velocity,
-           const vec2 &acceleration,
-           const std::string &color,
-           const double radius,
-           const double mass) {
-  position_ = position;
-  velocity_ = velocity;
-  acceleration_ = acceleration;
-  color_ = color;
-  radius_ = radius;
-  mass_ = mass;
-
+Bird::Bird() {
+  acceleration_ = 0;
+  velocity_ = 0;
+  position_ = vec2(300, 450);
 }
 
 void Bird::Draw() {
-  ci::gl::color(ci::Color(color_.c_str()));
-  ci::gl::drawSolidCircle(vec2(position_), (float) radius_);
+  ci::gl::color(ci::Color(kColor.c_str()));
+  ci::gl::drawSolidCircle(vec2(position_), (float) kRadius);
 }
 
 void Bird::UpdateBird() {
-  position_++;
+  if (acceleration_ >= kGravity) {
+    acceleration_ = kGravity;
+
+  } else {
+    acceleration_ += kGravity;
+  }
+  velocity_ += acceleration_;
+  position_.y += velocity_;
+  Draw();
+}
+
+void Bird::ChangeBirdOnSpace() {
+  acceleration_ = 0;
+  velocity_ = -kGravity / 2 * 60;
+  position_.y += velocity_;
+  Draw();
 }
 
 const vec2 &Bird::GetPosition() const {
   return position_;
 }
 
-const vec2 &Bird::GetVelocity() const {
+const float &Bird::GetVelocity() const {
   return velocity_;
 }
-const vec2 &Bird::GetAcceleration() const {
-  return acceleration_;
-}
+
 const std::string &Bird::GetColor() const {
-  return color_;
+  return kColor;
 }
 
 const double &Bird::GetRadius() const {
-  return radius_;
+  return kRadius;
 }
 
-const double &Bird::GetMass() const {
-  return mass_;
-}
 }

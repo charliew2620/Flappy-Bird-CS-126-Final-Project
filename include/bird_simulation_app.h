@@ -4,6 +4,7 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "pipe.h"
+#include "bird.h"
 
 namespace flappybird {
 
@@ -35,8 +36,11 @@ class FlappyBirdApp : public ci::app::App {
    */
   void update() override;
 
+  void keyDown(ci::app::KeyEvent event) override;
+
  private:
   Pipe pipe_;
+  Bird bird_;
 };
 
 }  // namespace flappybird
