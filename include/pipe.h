@@ -32,6 +32,9 @@ class Pipe {
    * @return a count.
    */
   const int &GetPipeFramesPassed() const;
+  
+  const float &GetSpawnPoint() const;
+  const float &GetWidth() const;
 
  private:
   float width_;
@@ -41,6 +44,7 @@ class Pipe {
   int frames_passed_ = 0;
   
   int kSpeedOfPipe = 2;
+  std::string kColorOfPipe = "green";
 
 };
 

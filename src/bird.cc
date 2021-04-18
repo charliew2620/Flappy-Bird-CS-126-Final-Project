@@ -46,5 +46,8 @@ const std::string &Bird::GetColor() const {
 const float &Bird::GetRadius() const {
   return kRadius;
 }
+const float &Bird::GetAcceleration() const {
+  return acceleration_;
+}
 
 }

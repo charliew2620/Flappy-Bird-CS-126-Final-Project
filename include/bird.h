@@ -34,6 +34,7 @@ class Bird {
   // getters
   const vec2 &GetPosition() const;
   const float &GetVelocity() const;
+  const float &GetAcceleration() const;
   const std::string &GetColor() const;
   const float &GetRadius() const;
 

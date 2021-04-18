@@ -14,8 +14,6 @@ using std::vector;
  * An app for visualizing the game of flappy bird.
  */
 class FlappyBirdApp : public ci::app::App {
-  const int kWindowSize = 900;
-  const int kMargin = 90;
 
  public:
   /**
@@ -45,6 +43,9 @@ class FlappyBirdApp : public ci::app::App {
   void keyDown(ci::app::KeyEvent event) override;
 
  private:
+  const int kWindowSize = 900;
+  const int kMargin = 90;
+  
   Bird bird_;
   vector<Pipe> pipes_;
 

@@ -2,10 +2,16 @@
 
 #include <pipe.h>
 
-using flappybird::Pipe;
+flappybird::Pipe pipe(80, 900, 90);
 
-TEST_CASE("Placeholder test") {
-Pipe pipe;
-pipe.AdvanceOneFrame();
-REQUIRE(1 > 0);
+TEST_CASE("Tests initial position of pipe") {
+  REQUIRE(pipe.GetSpawnPoint() == 990);
+}
+
+TEST_CASE("Tests width of pipe") {
+  REQUIRE(pipe.GetWidth() == 80);
+}
+
+TEST_CASE("Tests initial frames passed") {
+  REQUIRE(pipe.GetPipeFramesPassed() == 0);
 }
