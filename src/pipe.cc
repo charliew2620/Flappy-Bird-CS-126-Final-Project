@@ -4,7 +4,7 @@ namespace flappybird {
 
 using glm::vec2;
 
-Pipe::Pipe(const float& width, const float& window_size, const float& margin) {
+Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
   width_ = width;
   window_size_ = window_size;
   spawn_point_ = window_size + margin;
@@ -16,8 +16,8 @@ void Pipe::Draw() {
 }
 
 void Pipe::AdvanceOneFrame() {
-  frames_passed_ += 2;
-  spawn_point_ -= 2;
+  frames_passed_ += kSpeedOfPipe;
+  spawn_point_ -= (float) kSpeedOfPipe;
 }
 const int &Pipe::GetPipeFramesPassed() const {
   return frames_passed_;

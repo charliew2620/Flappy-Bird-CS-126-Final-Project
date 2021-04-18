@@ -11,11 +11,11 @@ namespace flappybird {
 using std::vector;
 
 /**
- * An app for visualizing the behavior of an ideal gas.
+ * An app for visualizing the game of flappy bird.
  */
 class FlappyBirdApp : public ci::app::App {
   const int kWindowSize = 900;
-  const int kMargin = 80;
+  const int kMargin = 90;
 
  public:
   /**
@@ -24,7 +24,7 @@ class FlappyBirdApp : public ci::app::App {
   FlappyBirdApp();
 
   /**
-   * Calls PopulateContainer() to populate container with particles.
+   * Spawns the first pipe.
    */
   void setup() override;
 
@@ -34,19 +34,26 @@ class FlappyBirdApp : public ci::app::App {
   void draw() override;
 
   /**
-   * Calls AdvanceOneFrame() method and updates particles' positions.
+   * Updates the bird's position as well as all pipes.
    */
   void update() override;
 
+  /**
+   * Allows bird to jump if space is pressed.
+   * @param event detects if space has been pressed.
+   */
   void keyDown(ci::app::KeyEvent event) override;
 
  private:
   Bird bird_;
   vector<Pipe> pipes_;
-  
+
   int frames_passed_ = 0;
-  float kPipeWidth = 75;
-  
+  int kPipeWidth = 80;
+
+  /**
+   * Erases pipes that have gone past the window.
+   */
   void ErasePastPipes();
 };
 
