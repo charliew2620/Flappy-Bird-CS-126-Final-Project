@@ -28,14 +28,14 @@ class Pipe {
    */
   void AdvanceOneFrame();
   
-  const float& GetPipeFramesPassed() const;
+  const int& GetPipeFramesPassed() const;
 
  private:
   float width_;
   float spawn_point_;
   float window_size_;
   
-  float frames_passed_ = 0;
+  int frames_passed_ = 0;
   
   
 };

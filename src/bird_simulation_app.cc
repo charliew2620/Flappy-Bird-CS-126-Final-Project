@@ -44,9 +44,9 @@ void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
   }
 }
 void FlappyBirdApp::ErasePastPipes() {
-  for (int pipe = 0; pipe < pipes_.size(); pipe++) {
-    if (pipes_.at(pipe).GetPipeFramesPassed() > kMargin + kWindowSize) {
-      pipes_.erase(pipes_.begin() + pipe);
+  for (size_t pipe = 0; pipe < pipes_.size(); pipe++) {
+    if (pipes_[pipe].GetPipeFramesPassed() >= kMargin + kWindowSize) {
+      pipes_.erase(pipes_.begin());
     }
   }
 }

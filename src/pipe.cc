@@ -16,10 +16,10 @@ void Pipe::Draw() {
 }
 
 void Pipe::AdvanceOneFrame() {
-  frames_passed_++;
+  frames_passed_ += 2;
   spawn_point_ -= 2;
 }
-const float &Pipe::GetPipeFramesPassed() const {
+const int &Pipe::GetPipeFramesPassed() const {
   return frames_passed_;
 }
 
