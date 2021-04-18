@@ -23,7 +23,7 @@ class Bird {
   const vec2& GetPosition() const;
   const float& GetVelocity() const;
   const std::string& GetColor() const;
-  const double& GetRadius() const;
+  const float& GetRadius() const;
   
 
  private:
@@ -32,7 +32,11 @@ class Bird {
   float acceleration_;
   float kGravity = 0.2f;
   std::string kColor = "yellow";
-  double kRadius = 10;
+  float kRadius = 10;
+  
+  float kRatio = 30;
+  
+  vec2 kSpawnPosition = vec2(300, 450);
 
 };
 }

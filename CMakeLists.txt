@@ -51,7 +51,7 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES    src/bird.cc
                             src/bird_simulation_app.cc
-                            src/pipe.cc)
+        src/pipe.cc)
 
 list(APPEND TEST_FILES tests/bird_test.cc
                        tests/pipe_test.cc)

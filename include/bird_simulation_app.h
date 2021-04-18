@@ -8,12 +8,14 @@
 
 namespace flappybird {
 
+using std::vector;
+
 /**
  * An app for visualizing the behavior of an ideal gas.
  */
 class FlappyBirdApp : public ci::app::App {
   const int kWindowSize = 900;
-  const int kMargin = 90;
+  const int kMargin = 100;
 
  public:
   /**
@@ -39,8 +41,11 @@ class FlappyBirdApp : public ci::app::App {
   void keyDown(ci::app::KeyEvent event) override;
 
  private:
-  Pipe pipe_;
   Bird bird_;
+  vector<Pipe> pipes_;
+  
+  int frames_passed_ = 0;
+  float kPipeWidth = 75;
 };
 
 }  // namespace flappybird

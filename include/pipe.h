@@ -2,10 +2,10 @@
 
 #include "cinder/gl/gl.h"
 
-using glm::vec2;
 
 namespace flappybird {
 
+using glm::vec2;
 /**
  * The container in which all of the gas particles are contained. This class
  * stores all of the particles and updates them on each frame of the simulation.
@@ -15,7 +15,7 @@ class Pipe {
   /**
    * TODO: Add more parameters to this constructor, and add documentation.
    */
-  Pipe();
+  Pipe(const float& width, const float& window_size);
 
   /**
    * Displays the container walls and the current positions of the particles.
@@ -29,11 +29,10 @@ class Pipe {
   void AdvanceOneFrame();
 
  private:
-  /**
-   * This variable is just for the purposes of demonstrating how to make a shape move
-   * across a screen. Please remove it once you start working on your code.
-   */
-  int dummy_variable_ = 0;
+  float width_;
+  float window_size_;
+  
+  
 };
 
 }  // namespace flappybird

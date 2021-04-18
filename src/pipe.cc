@@ -4,20 +4,18 @@ namespace flappybird {
 
 using glm::vec2;
 
-Pipe::Pipe() {
-
+Pipe::Pipe(const float& width, const float& window_size) {
+  width_ = width;
+  window_size_ = window_size;
 }
 
 void Pipe::Display() const {
   // This function has a lot of magic numbers; be sure to design your code in a way that avoids this.
-  ci::gl::color(ci::Color("orange"));
-  ci::gl::drawSolidCircle(vec2(dummy_variable_, 200), 10);
-  ci::gl::color(ci::Color("white"));
-  ci::gl::drawStrokedRect(ci::Rectf(vec2(100, 100), vec2(600, 400)));
+  ci::gl::color(ci::Color("green"));
+  ci::gl::drawSolidRect(ci::Rectf(vec2(100, 0), vec2(100- width_, window_size_)));
 }
 
 void Pipe::AdvanceOneFrame() {
-  ++dummy_variable_;
 }
 
 }  // namespace flappybird

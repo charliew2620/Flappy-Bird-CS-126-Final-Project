@@ -5,12 +5,12 @@ namespace flappybird {
 Bird::Bird() {
   acceleration_ = 0;
   velocity_ = 0;
-  position_ = vec2(300, 450);
+  position_ = kSpawnPosition;
 }
 
 void Bird::Draw() {
   ci::gl::color(ci::Color(kColor.c_str()));
-  ci::gl::drawSolidCircle(vec2(position_), (float) kRadius);
+  ci::gl::drawSolidCircle(vec2(position_), kRadius);
 }
 
 void Bird::UpdateBird() {
@@ -27,7 +27,7 @@ void Bird::UpdateBird() {
 
 void Bird::ChangeBirdOnSpace() {
   acceleration_ = 0;
-  velocity_ = -kGravity / 2 * 60;
+  velocity_ = -kGravity * kRatio;
   position_.y += velocity_;
   Draw();
 }
@@ -44,7 +44,7 @@ const std::string &Bird::GetColor() const {
   return kColor;
 }
 
-const double &Bird::GetRadius() const {
+const float &Bird::GetRadius() const {
   return kRadius;
 }
 

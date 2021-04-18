@@ -10,14 +10,25 @@ FlappyBirdApp::FlappyBirdApp() {
 void FlappyBirdApp::draw() {
   ci::Color background_color("aqua");
   ci::gl::clear(background_color);
-
-  //pipe_.Display();
   bird_.Draw();
+  
+  for (Pipe pipe : pipes_) {
+    pipe.Display();
+  }
 }
 
 void FlappyBirdApp::update() {
-  bird_.UpdateBird(); 
-  //pipe_.AdvanceOneFrame();
+  frames_passed_++;
+  
+  if (frames_passed_ == 225) {
+    frames_passed_ = 0;
+    pipes_.emplace_back(kPipeWidth, float( kWindowSize + kMargin));
+  }
+  bird_.UpdateBird();
+  
+  for (Pipe pipe : pipes_) {
+    pipe.AdvanceOneFrame();
+  }
 }
 
 void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
