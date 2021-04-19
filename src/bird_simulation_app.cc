@@ -12,7 +12,7 @@ void FlappyBirdApp::setup() {
 }
 
 void FlappyBirdApp::draw() {
-  ci::Color background_color("aqua");
+  ci::Color background_color(kBackGroundColor.c_str());
   ci::gl::clear(background_color);
   bird_.Draw();
 
@@ -42,6 +42,7 @@ void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
       break;
   }
 }
+
 void FlappyBirdApp::ErasePastPipes() {
   for (size_t pipe = 0; pipe < pipes_.size(); pipe++) {
     if (pipes_[pipe].GetPipeFramesPassed() > kMargin + kWindowSize + kPipeWidth) {
