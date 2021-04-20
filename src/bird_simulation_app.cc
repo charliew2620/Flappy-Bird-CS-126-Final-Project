@@ -15,7 +15,7 @@ void FlappyBirdApp::draw() {
   ci::Color background_color(kBackGroundColor.c_str());
   ci::gl::clear(background_color);
   bird_.Draw();
-
+  
   for (Pipe &pipe : pipes_) {
     pipe.Draw();
   }
@@ -28,7 +28,7 @@ void FlappyBirdApp::update() {
     pipe.AdvanceOneFrame();
   }
 
-  if (frames_passed_ == 225) {
+  if (frames_passed_ == kMaxFrames) {
     frames_passed_ = 0;
     pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
   }
@@ -50,5 +50,8 @@ void FlappyBirdApp::ErasePastPipes() {
     }
   }
 }
+
+// Make another class (some type of container class) that passes in bird and a pipe to compare if bird makes contact with pipe
+// Store boolean in a private variable and ues getter to call in this class?
 
 }  // namespace flappybird 

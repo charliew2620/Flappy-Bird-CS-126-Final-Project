@@ -51,6 +51,7 @@ class FlappyBirdApp : public ci::app::App {
 
   int frames_passed_ = 0;
   int kPipeWidth = 80;
+  int kMaxFrames = 225;
   std::string kBackGroundColor = "aqua";
 
   /**
