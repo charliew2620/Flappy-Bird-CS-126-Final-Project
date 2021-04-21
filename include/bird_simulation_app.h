@@ -43,8 +43,8 @@ class FlappyBirdApp : public ci::app::App {
   void keyDown(ci::app::KeyEvent event) override;
 
  private:
-  const int kWindowSize = 850;
-  const int kMargin = 90;
+  const int kWindowSize = 870;
+  const int kMargin = 100;
   
   Bird bird_;
   vector<Pipe> pipes_;

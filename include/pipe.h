@@ -48,10 +48,18 @@ class Pipe {
   int frames_passed_ = 0;
   
   int kSpeedOfPipe = 2;
-  std::string kColorOfPipe = "green";
+  float kRed = 202.0f;
+  float kGreen = 83.0f;
+  float kBlue = 16.0f;
+  
+  float kLengthBetweenPipes = 175;
+  
+  float top_pipe_length_;
 
   ci::Rectf top_pipe_;
   ci::Rectf bottom_pipe_;
+  
+  int GivePipeRandomLength();
 };
 
 }  // namespace flappybird

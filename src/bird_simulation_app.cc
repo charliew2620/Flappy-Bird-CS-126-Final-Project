@@ -10,7 +10,12 @@ FlappyBirdApp::FlappyBirdApp() {
 
 void FlappyBirdApp::setup() {
   pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
-  texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset("sunrise.jpg")));
+  
+  ci::gl::Texture2d::Format fmt;
+  
+  fmt.setWrap(GL_FILL, GL_FILL);
+  
+  texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset("sunrise.png")), fmt);
 }
 
 void FlappyBirdApp::draw() {

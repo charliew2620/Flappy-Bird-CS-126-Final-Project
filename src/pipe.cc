@@ -8,25 +8,35 @@ Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
   width_ = width;
   window_size_ = window_size;
   spawn_point_ = window_size + margin;
+  top_pipe_length_ = (float) GivePipeRandomLength();
 }
 
 void Pipe::Draw() {
-  ci::gl::color(ci::Color(kColorOfPipe.c_str()));
-  ci::gl::drawSolidRect(ci::Rectf(vec2(spawn_point_, 0), vec2(spawn_point_ + width_, window_size_)));
+  ci::gl::color(kRed / kRed, kGreen / kRed, kBlue / kRed);
+  ci::gl::drawSolidRect(top_pipe_);
+  ci::gl::drawSolidRect(bottom_pipe_);
 }
 
 void Pipe::AdvanceOneFrame() {
+  top_pipe_ = ci::Rectf(vec2(spawn_point_, 0), vec2(spawn_point_ + width_, top_pipe_length_));
+  bottom_pipe_ = ci::Rectf(vec2(spawn_point_, top_pipe_length_ + kLengthBetweenPipes),
+                           vec2(spawn_point_ + width_, window_size_));
   frames_passed_ += kSpeedOfPipe;
   spawn_point_ -= (float) kSpeedOfPipe;
 }
+
 const int &Pipe::GetPipeFramesPassed() const {
   return frames_passed_;
 }
+
 const float &Pipe::GetSpawnPoint() const {
   return spawn_point_;
 }
 const float &Pipe::GetWidth() const {
   return width_;
+}
+int Pipe::GivePipeRandomLength() {
+  return rand() % (int) (window_size_ - 80 - kLengthBetweenPipes);
 }
 
 }  // namespace flappybird
