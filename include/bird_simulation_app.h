@@ -43,7 +43,7 @@ class FlappyBirdApp : public ci::app::App {
   void keyDown(ci::app::KeyEvent event) override;
 
  private:
-  const int kWindowSize = 900;
+  const int kWindowSize = 850;
   const int kMargin = 90;
   
   Bird bird_;
@@ -53,6 +53,8 @@ class FlappyBirdApp : public ci::app::App {
   int kPipeWidth = 80;
   int kMaxFrames = 225;
   std::string kBackGroundColor = "aqua";
+
+  ci::gl::Texture2dRef texture_;
 
   /**
    * Erases pipes that have gone past the window.

@@ -35,6 +35,10 @@ class Pipe {
   
   const float &GetSpawnPoint() const;
   const float &GetWidth() const;
+  
+  const ci::Rectf &GetTopPipe() const;
+  const ci::Rectf &GetBottomPipe() const;
+  
 
  private:
   float width_;
@@ -46,6 +50,8 @@ class Pipe {
   int kSpeedOfPipe = 2;
   std::string kColorOfPipe = "green";
 
+  ci::Rectf top_pipe_;
+  ci::Rectf bottom_pipe_;
 };
 
 }  // namespace flappybird

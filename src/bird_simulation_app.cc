@@ -1,5 +1,6 @@
 
 #include "bird_simulation_app.h"
+#include "cinder/ImageIo.h"
 
 namespace flappybird {
 
@@ -9,11 +10,16 @@ FlappyBirdApp::FlappyBirdApp() {
 
 void FlappyBirdApp::setup() {
   pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
+  texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset("sunrise.jpg")));
 }
 
 void FlappyBirdApp::draw() {
-  ci::Color background_color(kBackGroundColor.c_str());
-  ci::gl::clear(background_color);
+//  ci::Color background_color(kBackGroundColor.c_str());
+//  ci::gl::clear(background_color);
+  ci::gl::clear();
+  ci::gl::color(1,1,1);
+  ci::gl::draw(texture_);
+
   bird_.Draw();
   
   for (Pipe &pipe : pipes_) {
