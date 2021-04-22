@@ -23,11 +23,11 @@ void FlappyBirdApp::draw() {
   ci::gl::color(1, 1, 1);
   ci::gl::draw(texture_);
 
-  bird_.Draw();
-
   for (Pipe &pipe : pipes_) {
     pipe.Draw();
   }
+
+  bird_.Draw(); 
 }
 
 void FlappyBirdApp::update() {
@@ -35,11 +35,15 @@ void FlappyBirdApp::update() {
 
   // Checks collision
   if (engine_.HasCollided()) {
-    bird_ = Bird();
-    pipes_.clear();
-    CreateNewPipe();
+    has_hit_pipe_ = true;
+    if (bird_.GetPosition().y == (float) kWindowSize) {
+      bird_ = Bird();
+      pipes_.clear();
+      has_hit_pipe_ = false;
+      CreateNewPipe();
+    }
     
-  } else {
+  } else if (!has_hit_pipe_){
     for (Pipe &pipe : pipes_) {
       pipe.AdvanceOneFrame();
     }
@@ -71,7 +75,7 @@ void FlappyBirdApp::ErasePastPipes() {
 void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
   switch ((event.getCode())) {
     case ci::app::KeyEvent::KEY_SPACE:
-      if (!engine_.HasCollided()) {
+      if (!engine_.HasCollided() && !has_hit_pipe_) {
         bird_.ChangeBirdOnSpace();
       }
       break;

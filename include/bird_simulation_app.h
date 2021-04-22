@@ -56,6 +56,8 @@ class FlappyBirdApp : public ci::app::App {
   int kMaxFrames = 225;
   
   ci::gl::Texture2dRef texture_;
+  
+  bool has_hit_pipe_ = false;
 
   /**
    * Erases pipes that have gone past the window.
