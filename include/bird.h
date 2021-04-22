@@ -47,6 +47,8 @@ class Bird {
   float kRadius = 20;
 
   float kRatio = 20;
+  
+  bool has_collided_ = false;
 
   vec2 kSpawnPosition = vec2(300, 450);
 

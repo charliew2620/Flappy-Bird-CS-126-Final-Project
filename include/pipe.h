@@ -15,7 +15,7 @@ class Pipe {
    * @param window_size used to spawn pipe.
    * @param margin used to spawn pipe.
    */
-  Pipe(const float &width, const float &window_size, const float &margin);
+  Pipe(const float &width, const float &window_size, const float &margin, const int &pipe_speed);
   
   /**
    * Default constructor
@@ -58,7 +58,7 @@ class Pipe {
   float top_pipe_length_;
 
   int frames_passed_ = 0;
-  int kSpeedOfPipe = 2;
+  int pipe_speed_;
   
 
   ci::Rectf top_pipe_;

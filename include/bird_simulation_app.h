@@ -55,12 +55,16 @@ class FlappyBirdApp : public ci::app::App {
   int kPipeWidth = 80;
   int kMaxFrames = 225;
 
+  int kPipeSpeed = 2;
+  
   ci::gl::Texture2dRef texture_;
 
   /**
    * Erases pipes that have gone past the window.
    */
   void ErasePastPipes();
+  
+  void CreateNewPipe();
 };
 
 }  // namespace flappybird

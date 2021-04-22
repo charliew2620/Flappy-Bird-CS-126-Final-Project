@@ -4,9 +4,10 @@ namespace flappybird {
 
 using glm::vec2;
 
-Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
+Pipe::Pipe(const float &width, const float &window_size, const float &margin, const int &pipe_speed) {
   width_ = width;
   window_size_ = window_size;
+  pipe_speed_ = pipe_speed;
   spawn_point_ = window_size + margin;
   top_pipe_length_ = (float) GivePipeRandomLength();
 
@@ -21,8 +22,8 @@ void Pipe::Draw() {
 
 void Pipe::AdvanceOneFrame() {
   SetPositionsOfPipes();
-  frames_passed_ += kSpeedOfPipe;
-  spawn_point_ -= (float) kSpeedOfPipe;
+  frames_passed_ += pipe_speed_;
+  spawn_point_ -= (float) pipe_speed_;
 }
 
 void Pipe::SetPositionsOfPipes() {
