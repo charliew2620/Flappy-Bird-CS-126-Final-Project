@@ -8,7 +8,7 @@ FlappyBirdApp::FlappyBirdApp() {
 }
 
 void FlappyBirdApp::setup() {
-  bird_ = Bird((float) kWindowSize);
+  bird_ = Bird(kWindowSize);
   pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
   engine_ = Engine(bird_, pipes_, kWindowSize);
 
@@ -28,7 +28,7 @@ void FlappyBirdApp::draw() {
     pipe.Draw();
   }
 
-  bird_.Draw(); 
+  bird_.Draw();
 }
 
 void FlappyBirdApp::update() {
@@ -38,23 +38,24 @@ void FlappyBirdApp::update() {
   if (engine_.HasCollided()) {
     has_hit_pipe_ = true;
     if (bird_.GetPosition().y == (float) kWindowSize) {
-      bird_ = Bird((float) kWindowSize);
+      bird_ = Bird(kWindowSize);
       pipes_.clear();
       has_hit_pipe_ = false;
       CreateNewPipe();
     }
-    
+
   } else if (!has_hit_pipe_){
     for (Pipe &pipe : pipes_) {
       pipe.AdvanceOneFrame();
     }
+
+    frames_passed_++;
 
     if (frames_passed_ == kMaxFrames) {
       CreateNewPipe();
     }
     ErasePastPipes();
   }
-  
   engine_ = Engine(bird_, pipes_, kWindowSize);
 }
 

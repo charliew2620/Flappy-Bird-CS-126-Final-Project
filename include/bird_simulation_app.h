@@ -46,7 +46,7 @@ class FlappyBirdApp : public ci::app::App {
  private:
   const int kWindowSize = 870;
   const int kMargin = 100;
-  
+
   Bird bird_;
   vector<Pipe> pipes_;
   Engine engine_;
@@ -54,16 +54,16 @@ class FlappyBirdApp : public ci::app::App {
   int frames_passed_ = 0;
   int kPipeWidth = 80;
   int kMaxFrames = 225;
-  
+
   ci::gl::Texture2dRef texture_;
-  
+
   bool has_hit_pipe_ = false;
 
   /**
    * Erases pipes that have gone past the window.
    */
   void ErasePastPipes();
-  
+
   void CreateNewPipe();
 };
 

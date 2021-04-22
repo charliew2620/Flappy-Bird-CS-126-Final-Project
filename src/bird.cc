@@ -2,12 +2,12 @@
 
 namespace flappybird {
 
-Bird::Bird(const float &window_size) {
-  window_size_ = window_size;
+Bird::Bird(const int &window_size) {
   acceleration_ = 0;
   velocity_ = 0;
   position_ = kSpawnPosition;
-  
+  window_size_ = window_size;
+
   UpdateBody();
 }
 
@@ -17,8 +17,8 @@ void Bird::Draw() {
 }
 
 void Bird::UpdateBird() {
-  if (position_.y + kRadius >= window_size_) {
-    position_.y = window_size_;
+  if (position_.y + kRadius >= (float) window_size_) {
+    position_.y = (float) window_size_;
     velocity_ = 0;
     acceleration_ = 0;
 
@@ -39,9 +39,9 @@ void Bird::ChangeBirdOnSpace() {
   acceleration_ = 0;
   velocity_ = -kGravity * kRatio;
   position_.y += velocity_;
-  
+
   UpdateBody();
-  
+
 }
 
 void Bird::UpdateBody() {

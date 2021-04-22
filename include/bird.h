@@ -14,7 +14,7 @@ class Bird {
   /**
    * Constructor to initialize a Bird object.
    */
-  Bird(const float &window_size);
+  Bird(const int &window_size);
   
   Bird() = default;
 
@@ -39,7 +39,7 @@ class Bird {
   const float &GetAcceleration() const;
   const std::string &GetColor() const;
   const float &GetRadius() const;
-  
+
   const ci::Rectf &GetBody() const;
 
  private:
@@ -52,12 +52,12 @@ class Bird {
 
   float kRatio = 20;
   
+  int window_size_;
+
   ci::Rectf body_;
-  
-  float window_size_;
 
   vec2 kSpawnPosition = vec2(300, 450);
-  
+
   void UpdateBody();
 
 };
