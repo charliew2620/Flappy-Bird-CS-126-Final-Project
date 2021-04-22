@@ -8,7 +8,7 @@ FlappyBirdApp::FlappyBirdApp() {
 }
 
 void FlappyBirdApp::setup() {
-  pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin, kPipeSpeed);
+  pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
   engine_ = Engine(bird_, pipes_, kWindowSize);
 
   ci::gl::Texture2d::Format fmt;
@@ -31,28 +31,32 @@ void FlappyBirdApp::draw() {
 }
 
 void FlappyBirdApp::update() {
-  frames_passed_++;
-
-  for (Pipe &pipe : pipes_) {
-    pipe.AdvanceOneFrame();
-  }
-
-  if (frames_passed_ == kMaxFrames) {
-    CreateNewPipe();
-  }
   bird_.UpdateBird();
-  ErasePastPipes();
 
+  // Checks collision
   if (engine_.HasCollided()) {
     bird_ = Bird();
     pipes_.clear();
     CreateNewPipe();
+    
+  } else {
+    for (Pipe &pipe : pipes_) {
+      pipe.AdvanceOneFrame();
+    }
+
+    frames_passed_++;
+
+    if (frames_passed_ == kMaxFrames) {
+      CreateNewPipe();
+    }
+    ErasePastPipes();
   }
+  engine_ = Engine(bird_, pipes_, kWindowSize);
 }
 
 void FlappyBirdApp::CreateNewPipe() {
   frames_passed_ = 0;
-  pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin, kPipeSpeed);
+  pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
   engine_ = Engine(bird_, pipes_, kWindowSize);
 }
 

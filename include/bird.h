@@ -37,6 +37,8 @@ class Bird {
   const float &GetAcceleration() const;
   const std::string &GetColor() const;
   const float &GetRadius() const;
+  
+  const ci::Rectf &GetBody() const;
 
  private:
   vec2 position_;
@@ -48,9 +50,11 @@ class Bird {
 
   float kRatio = 20;
   
-  bool has_collided_ = false;
+  ci::Rectf body_;
 
   vec2 kSpawnPosition = vec2(300, 450);
+  
+  void UpdateBody();
 
 };
 }

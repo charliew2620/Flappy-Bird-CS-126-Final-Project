@@ -54,8 +54,6 @@ class FlappyBirdApp : public ci::app::App {
   int frames_passed_ = 0;
   int kPipeWidth = 80;
   int kMaxFrames = 225;
-
-  int kPipeSpeed = 2;
   
   ci::gl::Texture2dRef texture_;
 

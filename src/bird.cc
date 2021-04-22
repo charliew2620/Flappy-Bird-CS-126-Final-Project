@@ -6,6 +6,8 @@ Bird::Bird() {
   acceleration_ = 0;
   velocity_ = 0;
   position_ = kSpawnPosition;
+  
+  UpdateBody();
 }
 
 void Bird::Draw() {
@@ -14,25 +16,36 @@ void Bird::Draw() {
 }
 
 void Bird::UpdateBird() {
-  // Keeps acceleration equal to gravity as the max to make sure bird's velocity doesn't go out of control.
-   if (position_.y + 2 * kRadius >= 870){
-    position_.y = 870 - kRadius;
+  if (position_.y + kRadius >= 870) {
+    position_.y = 870;
     velocity_ = 0;
     acceleration_ = 0;
+
   } else if (acceleration_ >= kGravity) {
+    // Keeps acceleration equal to gravity as the max to make sure bird's velocity doesn't go out of control.
     acceleration_ = kGravity;
 
   } else {
-      acceleration_ += kGravity;
+    acceleration_ += kGravity;
   }
   velocity_ += acceleration_;
   position_.y += velocity_;
+
+  UpdateBody();
 }
 
 void Bird::ChangeBirdOnSpace() {
   acceleration_ = 0;
   velocity_ = -kGravity * kRatio;
   position_.y += velocity_;
+  
+  UpdateBody();
+  
+}
+
+void Bird::UpdateBody() {
+  body_ = ci::Rectf(vec2(position_.x - kRadius, position_.y - kRadius),
+                    vec2(position_.x + kRadius, position_.y + kRadius));
 }
 
 const vec2 &Bird::GetPosition() const {
@@ -52,6 +65,9 @@ const float &Bird::GetRadius() const {
 }
 const float &Bird::GetAcceleration() const {
   return acceleration_;
+}
+const ci::Rectf &Bird::GetBody() const {
+  return body_;
 }
 
 }
