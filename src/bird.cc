@@ -15,11 +15,15 @@ void Bird::Draw() {
 
 void Bird::UpdateBird() {
   // Keeps acceleration equal to gravity as the max to make sure bird's velocity doesn't go out of control.
-  if (acceleration_ >= kGravity) {
+   if (position_.y + 2 * kRadius >= 870){
+    position_.y = 870 - kRadius;
+    velocity_ = 0;
+    acceleration_ = 0;
+  } else if (acceleration_ >= kGravity) {
     acceleration_ = kGravity;
 
   } else {
-    acceleration_ += kGravity;
+      acceleration_ += kGravity;
   }
   velocity_ += acceleration_;
   position_.y += velocity_;

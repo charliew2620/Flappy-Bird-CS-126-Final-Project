@@ -49,6 +49,7 @@ class FlappyBirdApp : public ci::app::App {
   
   Bird bird_;
   vector<Pipe> pipes_;
+  Engine engine_;
 
   int frames_passed_ = 0;
   int kPipeWidth = 80;

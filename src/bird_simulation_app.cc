@@ -9,6 +9,7 @@ FlappyBirdApp::FlappyBirdApp() {
 
 void FlappyBirdApp::setup() {
   pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
+  engine_ = Engine(bird_, pipes_, kWindowSize);
   
   ci::gl::Texture2d::Format fmt;
   
@@ -18,8 +19,6 @@ void FlappyBirdApp::setup() {
 }
 
 void FlappyBirdApp::draw() {
-//  ci::Color background_color(kBackGroundColor.c_str());
-//  ci::gl::clear(background_color);
   ci::gl::clear();
   ci::gl::color(1,1,1);
   ci::gl::draw(texture_);
@@ -41,14 +40,26 @@ void FlappyBirdApp::update() {
   if (frames_passed_ == kMaxFrames) {
     frames_passed_ = 0;
     pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
+    engine_ = Engine(bird_, pipes_, kWindowSize);
   }
   bird_.UpdateBird();
   ErasePastPipes();
+
+  if (engine_.HasCollided()) {
+    bird_ = Bird();
+    frames_passed_ = 0;
+    pipes_.clear();
+    pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
+    engine_ = Engine(bird_, pipes_, kWindowSize);
+  }
 }
 
 void FlappyBirdApp::keyDown(ci::app::KeyEvent event) {
   switch ((event.getCode())) {
-    case ci::app::KeyEvent::KEY_SPACE:bird_.ChangeBirdOnSpace();
+    case ci::app::KeyEvent::KEY_SPACE:
+      if (bird_.GetPosition().y + 2 * bird_.GetRadius() < (float) kWindowSize) {
+        bird_.ChangeBirdOnSpace();
+      }
       break;
   }
 }
