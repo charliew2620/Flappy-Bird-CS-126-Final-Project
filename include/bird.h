@@ -14,7 +14,9 @@ class Bird {
   /**
    * Constructor to initialize a Bird object.
    */
-  Bird();
+  Bird(const float &window_size);
+  
+  Bird() = default;
 
   /**
    * Displays the bird in its current position.
@@ -51,6 +53,8 @@ class Bird {
   float kRatio = 20;
   
   ci::Rectf body_;
+  
+  float window_size_;
 
   vec2 kSpawnPosition = vec2(300, 450);
   
