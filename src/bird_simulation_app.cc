@@ -1,6 +1,5 @@
 
 #include "bird_simulation_app.h"
-#include "cinder/ImageIo.h"
 
 namespace flappybird {
 
@@ -64,5 +63,6 @@ void FlappyBirdApp::ErasePastPipes() {
 
 // Make another class (some type of container class) that passes in bird and a pipe to compare if bird makes contact with pipe
 // Store boolean in a private variable and ues getter to call in this class?
+//store and draw score
 
 }  // namespace flappybird 

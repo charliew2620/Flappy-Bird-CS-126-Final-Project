@@ -45,16 +45,16 @@ class Pipe {
   float spawn_point_;
   float window_size_;
 
-  int frames_passed_ = 0;
-  
-  int kSpeedOfPipe = 2;
   float kRed = 202.0f;
   float kGreen = 83.0f;
   float kBlue = 16.0f;
-  
+
   float kLengthBetweenPipes = 175;
-  
   float top_pipe_length_;
+
+  int frames_passed_ = 0;
+  int kSpeedOfPipe = 2;
+  
 
   ci::Rectf top_pipe_;
   ci::Rectf bottom_pipe_;

@@ -5,6 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "pipe.h"
 #include "bird.h"
+#include "game_engine.h"
 
 namespace flappybird {
 
@@ -52,7 +53,6 @@ class FlappyBirdApp : public ci::app::App {
   int frames_passed_ = 0;
   int kPipeWidth = 80;
   int kMaxFrames = 225;
-  std::string kBackGroundColor = "aqua";
 
   ci::gl::Texture2dRef texture_;
 

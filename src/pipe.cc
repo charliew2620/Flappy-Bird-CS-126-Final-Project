@@ -44,5 +44,11 @@ const float &Pipe::GetWidth() const {
 int Pipe::GivePipeRandomLength() {
   return rand() % (int) (window_size_ - 80 - kLengthBetweenPipes);
 }
+const ci::Rectf &Pipe::GetTopPipe() const {
+  return top_pipe_;
+}
+const ci::Rectf &Pipe::GetBottomPipe() const {
+  return bottom_pipe_;
+}
 
 }  // namespace flappybird
