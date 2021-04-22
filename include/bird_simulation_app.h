@@ -5,7 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "pipe.h"
 #include "bird.h"
-#include "game_engine.h"
+#include "engine.h"
 
 namespace flappybird {
 

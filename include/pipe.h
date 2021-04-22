@@ -16,6 +16,11 @@ class Pipe {
    * @param margin used to spawn pipe.
    */
   Pipe(const float &width, const float &window_size, const float &margin);
+  
+  /**
+   * Default constructor
+   */
+  Pipe() = default;
 
   /**
    * Displays the pipe in its current positions.
