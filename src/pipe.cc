@@ -9,6 +9,8 @@ Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
   window_size_ = window_size;
   spawn_point_ = window_size + margin;
   top_pipe_length_ = (float) GivePipeRandomLength();
+
+  SetPositionsOfPipes();
 }
 
 void Pipe::Draw() {
@@ -18,11 +20,15 @@ void Pipe::Draw() {
 }
 
 void Pipe::AdvanceOneFrame() {
+  SetPositionsOfPipes();
+  frames_passed_ += kSpeedOfPipe;
+  spawn_point_ -= (float) kSpeedOfPipe;
+}
+
+void Pipe::SetPositionsOfPipes() {
   top_pipe_ = ci::Rectf(vec2(spawn_point_, 0), vec2(spawn_point_ + width_, top_pipe_length_));
   bottom_pipe_ = ci::Rectf(vec2(spawn_point_, top_pipe_length_ + kLengthBetweenPipes),
                            vec2(spawn_point_ + width_, window_size_));
-  frames_passed_ += kSpeedOfPipe;
-  spawn_point_ -= (float) kSpeedOfPipe;
 }
 
 const int &Pipe::GetPipeFramesPassed() const {

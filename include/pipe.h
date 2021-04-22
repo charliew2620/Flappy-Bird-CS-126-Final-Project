@@ -60,6 +60,8 @@ class Pipe {
   ci::Rectf bottom_pipe_;
   
   int GivePipeRandomLength();
+  
+  void SetPositionsOfPipes();
 };
 
 }  // namespace flappybird
