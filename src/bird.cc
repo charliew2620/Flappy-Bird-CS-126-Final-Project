@@ -22,16 +22,11 @@ void Bird::UpdateBird() {
     velocity_ = 0;
     acceleration_ = 0;
 
-  } else if (acceleration_ >= kGravity) {
-    // Keeps acceleration equal to gravity as the max to make sure bird's velocity doesn't go out of control.
+  }  else {
     acceleration_ = kGravity;
-
-  } else {
-    acceleration_ += kGravity;
+    velocity_ += acceleration_;
+    position_.y += velocity_;
   }
-  velocity_ += acceleration_;
-  position_.y += velocity_;
-
   UpdateBody();
 }
 
