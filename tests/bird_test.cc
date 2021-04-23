@@ -3,7 +3,7 @@
 
 using glm::vec2;
 
-flappybird::Bird bird;
+flappybird::Bird bird(870);
 
 TEST_CASE("Tests spawn position") {
   REQUIRE(bird.GetPosition() == vec2(300, 450));
