@@ -23,7 +23,7 @@ void Bird::UpdateBird() {
     velocity_ = 0;
     acceleration_ = 0;
 
-  }  else {
+  } else {
     acceleration_ = kGravity;
     velocity_ += acceleration_;
     position_.y += velocity_;

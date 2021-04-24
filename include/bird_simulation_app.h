@@ -67,6 +67,9 @@ class FlappyBirdApp : public ci::app::App {
    */
   void ErasePastPipes();
 
+  /**
+   * Creates a new Pipe object.
+   */
   void CreateNewPipe();
 };
 

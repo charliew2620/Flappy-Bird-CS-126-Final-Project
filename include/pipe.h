@@ -16,7 +16,7 @@ class Pipe {
    * @param margin used to spawn pipe.
    */
   Pipe(const float &width, const float &window_size, const float &margin);
-  
+
   /**
    * Default constructor
    */
@@ -37,13 +37,12 @@ class Pipe {
    * @return a count.
    */
   const int &GetPipeFramesPassed() const;
-  
+
+  // getters
   const float &GetSpawnPoint() const;
   const float &GetWidth() const;
-  
   const ci::Rectf &GetTopPipe() const;
   const ci::Rectf &GetBottomPipe() const;
-  
 
  private:
   float width_;
@@ -63,9 +62,16 @@ class Pipe {
 
   ci::Rectf top_pipe_;
   ci::Rectf bottom_pipe_;
-  
-  int GivePipeRandomLength();
-  
+
+  /**
+   * Gives top pipe random length.
+   * @return the length of the pipe.
+   */
+  int GiveTopPipeRandomLength();
+
+  /**
+   * Sets the position of the bottom and top pipes.
+   */
   void SetPositionsOfPipes();
 };
 

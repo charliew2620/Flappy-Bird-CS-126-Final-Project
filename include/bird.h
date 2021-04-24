@@ -16,7 +16,7 @@ class Bird {
    * Constructor to initialize a Bird object.
    */
   Bird(const int &window_size, const ci::gl::Texture2dRef &bird_image, const vec2 &spawn_position);
-  
+
   Bird() = default;
 
   /**
@@ -52,7 +52,7 @@ class Bird {
   float kRadius = 20;
 
   float kRatio = 20;
-  
+
   int window_size_;
 
   ci::Rectf body_;

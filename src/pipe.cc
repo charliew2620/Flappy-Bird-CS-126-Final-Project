@@ -8,7 +8,7 @@ Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
   width_ = width;
   window_size_ = window_size;
   spawn_point_ = window_size + margin;
-  top_pipe_length_ = (float) GivePipeRandomLength();
+  top_pipe_length_ = (float) GiveTopPipeRandomLength();
 
   SetPositionsOfPipes();
 }
@@ -41,7 +41,7 @@ const float &Pipe::GetSpawnPoint() const {
 const float &Pipe::GetWidth() const {
   return width_;
 }
-int Pipe::GivePipeRandomLength() {
+int Pipe::GiveTopPipeRandomLength() {
   return rand() % (int) (window_size_ - kMinPipeLength - kLengthBetweenPipes);
 }
 const ci::Rectf &Pipe::GetTopPipe() const {
