@@ -56,6 +56,7 @@ class FlappyBirdApp : public ci::app::App {
   int kMaxFrames = 225;
 
   ci::gl::Texture2dRef texture_;
+  ci::gl::Texture2dRef kBirdImage = ci::gl::Texture2d::create(ci::loadImage(loadAsset("flappybird.png")));
 
   bool has_hit_pipe_ = false;
 

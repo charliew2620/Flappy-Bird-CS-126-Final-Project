@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "cinder/gl/gl.h"
+#include "cinder/app/RendererGl.h"
 
 namespace flappybird {
 
@@ -14,7 +15,7 @@ class Bird {
   /**
    * Constructor to initialize a Bird object.
    */
-  Bird(const int &window_size);
+  Bird(const int &window_size, const ci::gl::Texture2dRef &bird_image);
   
   Bird() = default;
 
@@ -57,6 +58,8 @@ class Bird {
   ci::Rectf body_;
 
   vec2 kSpawnPosition = vec2(300, 450);
+
+  ci::gl::Texture2dRef texture_;
 
   void UpdateBody();
 

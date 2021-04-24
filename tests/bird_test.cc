@@ -3,7 +3,8 @@
 
 using glm::vec2;
 
-flappybird::Bird bird(870);
+ci::gl::Texture2dRef bird_image;
+flappybird::Bird bird(870, bird_image);
 
 TEST_CASE("Tests spawn position") {
   REQUIRE(bird.GetPosition() == vec2(300, 450));

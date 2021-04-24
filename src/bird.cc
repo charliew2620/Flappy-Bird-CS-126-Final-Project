@@ -2,18 +2,21 @@
 
 namespace flappybird {
 
-Bird::Bird(const int &window_size) {
+Bird::Bird(const int &window_size, const ci::gl::Texture2dRef &bird_image) {
   acceleration_ = 0;
   velocity_ = 0;
   position_ = kSpawnPosition;
   window_size_ = window_size;
+  texture_ = bird_image;
 
   UpdateBody();
 }
 
 void Bird::Draw() {
-  ci::gl::color(ci::Color(kColor.c_str()));
-  ci::gl::drawSolidCircle(vec2(position_), kRadius);
+  //ci::gl::color(ci::Color(kColor.c_str()));
+  //ci::gl::drawSolidCircle(vec2(position_), kRadius);
+  ci::gl::color(1, 1, 1);
+  ci::gl::draw(texture_, body_);
 }
 
 void Bird::UpdateBird() {

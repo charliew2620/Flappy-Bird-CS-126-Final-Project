@@ -8,16 +8,15 @@ FlappyBirdApp::FlappyBirdApp() {
 }
 
 void FlappyBirdApp::setup() {
-  bird_ = Bird(kWindowSize);
+  bird_ = Bird(kWindowSize, kBirdImage);
   pipes_.emplace_back((float) kPipeWidth, (float) kWindowSize, (float) kMargin);
   engine_ = Engine(bird_, pipes_, kWindowSize);
 
   ci::gl::Texture2d::Format fmt;
 
   fmt.setWrap(GL_FILL, GL_FILL);
-
+  
   texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset("sunrise.png")), fmt);
-  ci::gl::Texture2dRef();
 }
 
 void FlappyBirdApp::draw() {
@@ -39,7 +38,7 @@ void FlappyBirdApp::update() {
   if (engine_.HasCollided()) {
     has_hit_pipe_ = true;
     if (bird_.GetPosition().y == (float) kWindowSize) {
-      bird_ = Bird(kWindowSize);
+      bird_ = Bird(kWindowSize, kBirdImage);
       pipes_.clear();
       has_hit_pipe_ = false;
       CreateNewPipe();
