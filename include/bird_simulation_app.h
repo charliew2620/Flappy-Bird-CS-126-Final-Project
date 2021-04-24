@@ -51,16 +51,17 @@ class FlappyBirdApp : public ci::app::App {
   vector<Pipe> pipes_;
   Engine engine_;
 
+  vec2 kBirdSpawnPosition = vec2(300, 450);
+
   int frames_passed_ = 0;
   int kPipeWidth = 80;
   int kMaxFrames = 225;
 
   ci::gl::Texture2dRef texture_;
   ci::gl::Texture2dRef kBirdImage = ci::gl::Texture2d::create(ci::loadImage(loadAsset("flappybird.png")));
+  std::string kBackgroundImage = "sunrise.png";
 
   bool has_hit_pipe_ = false;
-
-  vec2 kBirdSpawnPosition = vec2(300, 450);
 
   /**
    * Erases pipes that have gone past the window.

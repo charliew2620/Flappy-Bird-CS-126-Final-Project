@@ -16,7 +16,7 @@ void FlappyBirdApp::setup() {
 
   fmt.setWrap(GL_FILL, GL_FILL);
   
-  texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset("sunrise.png")), fmt);
+  texture_ = ci::gl::Texture2d::create(ci::loadImage(loadAsset(kBackgroundImage)), fmt);
 }
 
 void FlappyBirdApp::draw() {
