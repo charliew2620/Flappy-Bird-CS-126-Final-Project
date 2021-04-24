@@ -56,10 +56,10 @@ class Pipe {
 
   float kLengthBetweenPipes = 175;
   float top_pipe_length_;
+  float kMinPipeLength = 80;
 
   int frames_passed_ = 0;
   int kPipeVelocity = 2;
-  
 
   ci::Rectf top_pipe_;
   ci::Rectf bottom_pipe_;

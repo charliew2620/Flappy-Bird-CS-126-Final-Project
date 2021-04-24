@@ -42,7 +42,7 @@ const float &Pipe::GetWidth() const {
   return width_;
 }
 int Pipe::GivePipeRandomLength() {
-  return rand() % (int) (window_size_ - 80 - kLengthBetweenPipes);
+  return rand() % (int) (window_size_ - kMinPipeLength - kLengthBetweenPipes);
 }
 const ci::Rectf &Pipe::GetTopPipe() const {
   return top_pipe_;

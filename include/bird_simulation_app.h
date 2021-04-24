@@ -60,6 +60,8 @@ class FlappyBirdApp : public ci::app::App {
 
   bool has_hit_pipe_ = false;
 
+  vec2 kBirdSpawnPosition = vec2(300, 450);
+
   /**
    * Erases pipes that have gone past the window.
    */
