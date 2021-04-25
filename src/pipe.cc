@@ -20,9 +20,9 @@ void Pipe::Draw() {
 }
 
 void Pipe::AdvanceOneFrame() {
-  SetPositionsOfPipes();
   frames_passed_ += kPipeVelocity;
   spawn_point_ -= (float) kPipeVelocity;
+  SetPositionsOfPipes();
 }
 
 void Pipe::SetPositionsOfPipes() {

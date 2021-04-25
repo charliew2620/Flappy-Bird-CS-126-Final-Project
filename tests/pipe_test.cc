@@ -29,3 +29,21 @@ TEST_CASE("Tests to see if created pipe lengths isn't too long") {
     REQUIRE(pipe_test.GetBottomPipe().getY1() == pipe_test.GetTopPipe().getY2() + 175);
   }
 }
+
+TEST_CASE("Tests AdvanceOneFrame method") {
+  flappybird::Pipe pipe1(80, 900, 90);
+  pipe1.AdvanceOneFrame();
+
+  SECTION("Tests if whole pipe has moved") {
+    REQUIRE(pipe1.GetSpawnPoint() == 988.0f);
+  }
+
+  SECTION("Tests frames pipe has passed") {
+    REQUIRE(pipe1.GetPipeFramesPassed() == 2);
+  }
+  
+  SECTION("Tests if bottom and top pipe has moved") {
+    REQUIRE(pipe1.GetTopPipe().getX1() == 988.0f);
+    REQUIRE(pipe1.GetBottomPipe().getX1() == 988.0f);
+  }
+}
