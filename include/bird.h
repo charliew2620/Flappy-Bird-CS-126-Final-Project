@@ -59,6 +59,9 @@ class Bird {
 
   ci::gl::Texture2dRef texture_;
 
+  /**
+   * Updates the body of the bird's position.
+   */
   void UpdateBody();
 
 };
