@@ -9,8 +9,6 @@
 
 namespace flappybird {
 
-using std::vector;
-
 /**
  * An app for visualizing the game of flappy bird.
  */
@@ -47,31 +45,11 @@ class FlappyBirdApp : public ci::app::App {
   const int kWindowSize = 870;
   const int kMargin = 100;
 
-  Bird bird_;
-  vector<Pipe> pipes_;
   Engine engine_;
-
-  vec2 kBirdSpawnPosition = vec2(300, 450);
-
-  int frames_passed_ = 0;
-  int kPipeWidth = 80;
-  int kMaxFrames = 225;
 
   ci::gl::Texture2dRef texture_;
   ci::gl::Texture2dRef kBirdImage = ci::gl::Texture2d::create(ci::loadImage(loadAsset("flappybird.png")));
   std::string kBackgroundImage = "sunrise.png";
-
-  bool has_hit_pipe_ = false;
-
-  /**
-   * Erases pipes that have gone past the window.
-   */
-  void ErasePastPipes();
-
-  /**
-   * Creates a new Pipe object.
-   */
-  void CreateNewPipe();
 };
 
 }  // namespace flappybird
