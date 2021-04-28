@@ -9,6 +9,7 @@ Pipe::Pipe(const float &width, const float &window_size, const float &margin) {
   window_size_ = window_size;
   spawn_point_ = window_size + margin;
   top_pipe_length_ = (float) GiveTopPipeRandomLength();
+  pipe_passed_ = false;
 
   SetPositionsOfPipes();
 }
@@ -29,6 +30,11 @@ void Pipe::SetPositionsOfPipes() {
   top_pipe_ = ci::Rectf(vec2(spawn_point_, 0), vec2(spawn_point_ + width_, top_pipe_length_));
   bottom_pipe_ = ci::Rectf(vec2(spawn_point_, top_pipe_length_ + kLengthBetweenPipes),
                            vec2(spawn_point_ + width_, window_size_));
+  space_between_pipes_ = ci::Rectf(vec2(spawn_point_, top_pipe_length_), vec2(spawn_point_ + width_, top_pipe_length_ + kLengthBetweenPipes));
+}
+
+void Pipe::PipeHasBeenPassed() {
+  pipe_passed_ = true;
 }
 
 const int &Pipe::GetPipeFramesPassed() const {
@@ -49,5 +55,11 @@ const ci::Rectf &Pipe::GetTopPipe() const {
 }
 const ci::Rectf &Pipe::GetBottomPipe() const {
   return bottom_pipe_;
+}
+const ci::Rectf &Pipe::GetSpaceBetweenPipes() const {
+  return space_between_pipes_;
+}
+const bool &Pipe::HasPipeBeenPassed() const {
+  return pipe_passed_;
 }
 }  // namespace flappybird

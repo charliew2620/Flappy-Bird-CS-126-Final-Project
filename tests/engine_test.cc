@@ -5,7 +5,6 @@
 #include <pipe.h>
 
 using glm::vec2;
-using std::vector;
 
 TEST_CASE("Tests HasCollided method") {
   SECTION("Tests that bird has not hit ground or pipes") {

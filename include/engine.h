@@ -46,6 +46,14 @@ class Engine {
   ci::gl::Texture2dRef texture_;
 
   bool has_hit_pipe_ = false;
+  
+  int score_;
+
+  double kXScorePositionRatio = 2.0;
+  double kYScorePositionRatio = 8.7;
+  ci::Color kScoreColor = "white";
+  std::string kScoreFont = "Impact";
+  float kScoreFontSize = 60;
 
   /**
    * Erases pipes that have gone past the window.
@@ -56,5 +64,7 @@ class Engine {
    * Creates a new Pipe object.
    */
   void CreateNewPipe();
+  
+  void TrackScore();
 };
-}
+} // namespace flappybird

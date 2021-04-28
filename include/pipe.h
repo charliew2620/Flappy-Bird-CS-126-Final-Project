@@ -31,6 +31,8 @@ class Pipe {
    * Updates the position of the pipe.
    */
   void AdvanceOneFrame();
+  
+  void PipeHasBeenPassed();
 
   /**
    * Keeps count of how much the pipe has traveled across the window.
@@ -43,6 +45,8 @@ class Pipe {
   const float &GetWidth() const;
   const ci::Rectf &GetTopPipe() const;
   const ci::Rectf &GetBottomPipe() const;
+  const ci::Rectf &GetSpaceBetweenPipes() const;
+  const bool &HasPipeBeenPassed() const;
 
  private:
   float width_;
@@ -62,6 +66,9 @@ class Pipe {
 
   ci::Rectf top_pipe_;
   ci::Rectf bottom_pipe_;
+  ci::Rectf space_between_pipes_;
+  
+  bool pipe_passed_;
 
   /**
    * Gives top pipe random length.

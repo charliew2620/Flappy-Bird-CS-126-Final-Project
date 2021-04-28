@@ -8,6 +8,7 @@ Engine::Engine(const int &window_size, const ci::gl::Texture2dRef &bird_image, c
   margin_ = margin;
   bird_ = Bird(window_size, bird_image, kBirdSpawnPosition);
   pipes_.emplace_back((float) kPipeWidth, (float) window_size, (float) margin_);
+  score_ = 0;
   
   UpdateEngine();
 }
@@ -19,11 +20,17 @@ void Engine::DrawEngine() {
   }
 
   bird_.Draw();
+  
+  ci::gl::drawStringCentered(std::to_string(score_),
+                             glm::vec2(window_size_ / kXScorePositionRatio, window_size_ / kYScorePositionRatio),
+                             ci::Color(kScoreColor),
+                             ci::Font(kScoreFont, kScoreFontSize));
 
 }
 
 void Engine::UpdateEngine() {
   bird_.UpdateBird();
+  TrackScore();
 
   if (HasCollided()) {
     has_hit_pipe_ = true;
@@ -32,6 +39,7 @@ void Engine::UpdateEngine() {
       pipes_.clear();
       has_hit_pipe_ = false;
       CreateNewPipe();
+      score_ = 0;
     }
 
   } else if (!has_hit_pipe_) {
@@ -74,6 +82,15 @@ void Engine::ErasePastPipes() {
 void Engine::CreateNewPipe() {
   frames_passed_ = 0;
   pipes_.emplace_back((float) kPipeWidth, (float) window_size_, (float) margin_);
+}
+
+void Engine::TrackScore() {
+  for (Pipe &pipe : pipes_) {
+    if (bird_.GetBody().intersects(pipe.GetSpaceBetweenPipes()) && !pipe.HasPipeBeenPassed()) {
+      score_++;
+      pipe.PipeHasBeenPassed();
+    }
+  }
 }
 
 void Engine::ChangeBirdPhysics() {
