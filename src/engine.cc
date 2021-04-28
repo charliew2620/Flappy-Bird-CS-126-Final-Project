@@ -80,11 +80,15 @@ void Engine::ChangeBirdPhysics() {
   bird_.ChangeBirdOnSpace();
 }
 
-const Bird &Engine::GetBird() const {
+Bird &Engine::GetBird() {
   return bird_;
 }
+
 const bool &Engine::GetHasHitPipe() const {
   return has_hit_pipe_;
+}
+const vector<Pipe> &Engine::GetPipes() const {
+  return pipes_;
 }
 
 }

@@ -20,7 +20,10 @@ class Engine {
 
   void DrawEngine();
 
-  const Bird &GetBird() const;
+  // Not const for purposes of testing
+  Bird &GetBird();
+  
+  const vector<Pipe> &GetPipes() const; 
 
   const bool &GetHasHitPipe() const;
 

@@ -3,8 +3,6 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
-#include "pipe.h"
-#include "bird.h"
 #include "engine.h"
 
 namespace flappybird {
