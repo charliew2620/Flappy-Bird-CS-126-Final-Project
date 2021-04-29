@@ -32,6 +32,9 @@ class Pipe {
    */
   void AdvanceOneFrame();
   
+  /**
+   * Called when pipe has been passed by bird.
+   */
   void PipeHasBeenPassed();
 
   /**

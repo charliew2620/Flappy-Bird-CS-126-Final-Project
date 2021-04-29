@@ -9,7 +9,7 @@ Engine::Engine(const int &window_size, const ci::gl::Texture2dRef &bird_image, c
   bird_ = Bird(window_size, bird_image, kBirdSpawnPosition);
   pipes_.emplace_back((float) kPipeWidth, (float) window_size, (float) margin_);
   score_ = 0;
-  
+
   UpdateEngine();
 }
 
@@ -20,7 +20,7 @@ void Engine::DrawEngine() {
   }
 
   bird_.Draw();
-  
+
   ci::gl::drawStringCentered(std::to_string(score_),
                              glm::vec2(window_size_ / kXScorePositionRatio, window_size_ / kYScorePositionRatio),
                              ci::Color(kScoreColor),
@@ -106,6 +106,9 @@ const bool &Engine::GetHasHitPipe() const {
 }
 const vector<Pipe> &Engine::GetPipes() const {
   return pipes_;
+}
+const int &Engine::GetScore() const {
+  return score_;
 }
 
 }

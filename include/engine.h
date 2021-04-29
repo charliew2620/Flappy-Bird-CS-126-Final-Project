@@ -10,24 +10,46 @@ using std::vector;
 class Engine {
  public:
 
+  /**
+   * Constructor for creating an Engine object.
+   * @param window_size window size of screen.
+   * @param bird_image for drawing the bird.
+   * @param margin to be used in calculations.
+   */
   Engine(const int &window_size, const ci::gl::Texture2dRef &bird_image, const int &margin);
 
   Engine() = default;
 
+  /**
+   * Checks if bird has collided with ground or pipes.
+   * @return true if collision happened.
+   */
   bool HasCollided();
 
+  /**
+   * Updates variables of the engine object.
+   */
   void UpdateEngine();
 
+  /**
+   * Draws objects of engine object.
+   */
   void DrawEngine();
+
+  /**
+   * Used to change physics of bird when space is pressed.
+   */
+  void ChangeBirdPhysics();
 
   // Not const for purposes of testing
   Bird &GetBird();
-  
-  const vector<Pipe> &GetPipes() const; 
+
+  const vector<Pipe> &GetPipes() const;
 
   const bool &GetHasHitPipe() const;
-
-  void ChangeBirdPhysics();
+  
+  const int &GetScore() const;
+  
 
  private:
 
@@ -37,7 +59,7 @@ class Engine {
 
   int margin_;
 
-  vec2 kBirdSpawnPosition = vec2(300, 450);
+  vec2 kBirdSpawnPosition = vec2(375, 450);
 
   int frames_passed_ = 0;
   int kPipeWidth = 80;
@@ -46,7 +68,7 @@ class Engine {
   ci::gl::Texture2dRef texture_;
 
   bool has_hit_pipe_ = false;
-  
+
   int score_;
 
   double kXScorePositionRatio = 2.0;
@@ -64,7 +86,10 @@ class Engine {
    * Creates a new Pipe object.
    */
   void CreateNewPipe();
-  
+
+  /**
+   * Tracks the number of pipes bird has passed.
+   */
   void TrackScore();
 };
 } // namespace flappybird
