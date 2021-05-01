@@ -23,7 +23,6 @@ void FlappyBirdApp::draw() {
   ci::gl::draw(texture_);
   
   engine_.DrawEngine();
-
 }
 
 void FlappyBirdApp::update() {

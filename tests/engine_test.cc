@@ -66,3 +66,17 @@ TEST_CASE("Tests TrackScore method") {
     REQUIRE(engine.GetScore() == 0);
   }
 }
+
+TEST_CASE("Tests if new pipe is being created every 225 frames") {
+  ci::gl::Texture2dRef bird_image;
+  flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
+  for (int i = 0; i < 225; i++) {
+    engine.UpdateEngine();
+    // To keep bird from falling and resetting game
+    engine.GetBird() = flappybird::Bird(870,
+                                        bird_image,
+                                        vec2(engine.GetPipes()[0].GetTopPipe().x1,
+                                             engine.GetPipes()[0].GetTopPipe().y2 + 100));
+  }
+  REQUIRE(engine.GetPipes().size() == 2);
+}
