@@ -32,6 +32,7 @@ void Engine::UpdateEngine() {
   bird_.UpdateBird();
   TrackScore();
 
+  // Resets the game if bird has collided
   if (HasCollided()) {
     has_hit_pipe_ = true;
     if (bird_.GetPosition().y == (float) window_size_) {
@@ -58,10 +59,12 @@ void Engine::UpdateEngine() {
 }
 
 bool Engine::HasCollided() {
+  // Checks if bird has hit the ground
   if (bird_.GetPosition().y + bird_.GetRadius() >= (float) window_size_) {
     return true;
   }
 
+  // Checks if bird has hit any pipes
   for (Pipe pipe : pipes_) {
     if (bird_.GetBody().intersects(pipe.GetTopPipe()) || bird_.GetBody().intersects(pipe.GetBottomPipe())
         || bird_.GetPosition().x + bird_.GetRadius() == pipe.GetBottomPipe().getX1() && bird_.GetPosition().y < 0) {
@@ -72,6 +75,7 @@ bool Engine::HasCollided() {
 }
 
 void Engine::ErasePastPipes() {
+  // Erases pipes to keep vector list finite
   for (size_t pipe = 0; pipe < pipes_.size(); pipe++) {
     if (pipes_[pipe].GetPipeFramesPassed() > margin_ + window_size_ + kPipeWidth) {
       pipes_.erase(pipes_.begin());

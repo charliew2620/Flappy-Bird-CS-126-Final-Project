@@ -49,8 +49,7 @@ TEST_CASE("Tests TrackScore method") {
                                              engine.GetPipes()[0].GetTopPipe().y2 + 100));
     engine.UpdateEngine();
     REQUIRE(engine.GetScore() == 1);
-  }
-  SECTION("Checks if score resets from 1 to 0 after bird dies") {
+  }SECTION("Checks if score resets from 1 to 0 after bird dies") {
     flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
     engine.GetBird() = flappybird::Bird(870,
                                         bird_image,
