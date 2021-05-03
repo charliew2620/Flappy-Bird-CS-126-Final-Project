@@ -67,7 +67,9 @@ bool Engine::HasCollided() {
   // Checks if bird has hit any pipes
   for (Pipe pipe : pipes_) {
     if (bird_.GetBody().intersects(pipe.GetTopPipe()) || bird_.GetBody().intersects(pipe.GetBottomPipe())
-        || bird_.GetPosition().x + bird_.GetRadius() == pipe.GetBottomPipe().getX1() && bird_.GetPosition().y < 0) {
+        || bird_.GetPosition().x + bird_.GetRadius() >= pipe.GetBottomPipe().getX1()
+            && bird_.GetPosition().x + bird_.GetRadius() <= pipe.GetBottomPipe().getX2()
+            && bird_.GetPosition().y < 0) {
       return true;
     }
   }
