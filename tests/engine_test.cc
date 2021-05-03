@@ -14,10 +14,24 @@ TEST_CASE("Tests HasCollided method") {
     REQUIRE_FALSE(engine.HasCollided());
   }
 
+  SECTION("Tests that bird is off screen but not at pipe position") {
+    ci::gl::Texture2dRef bird_image;
+    flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
+    engine.GetBird() = flappybird::Bird(870, bird_image, vec2(300, -200));
+    REQUIRE_FALSE(engine.HasCollided());
+  }
+
   SECTION("Bird hits the ground") {
     ci::gl::Texture2dRef bird_image;
     flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
     engine.GetBird() = flappybird::Bird(870, bird_image, vec2(300, 870));
+    REQUIRE(engine.HasCollided());
+  }
+
+  SECTION("Bird is off screen at pipe position") {
+    ci::gl::Texture2dRef bird_image;
+    flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
+    engine.GetBird() = flappybird::Bird(870, bird_image, vec2(970, -100));
     REQUIRE(engine.HasCollided());
   }
 
@@ -41,7 +55,9 @@ TEST_CASE("Tests TrackScore method") {
   SECTION("Checks if score is 0 at start of game") {
     flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
     REQUIRE(engine.GetScore() == 0);
-  }SECTION("Checks if score increases if bird passes pipe") {
+  }
+  
+  SECTION("Checks if score increases if bird passes pipe") {
     flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
     engine.GetBird() = flappybird::Bird(870,
                                         bird_image,
@@ -49,7 +65,9 @@ TEST_CASE("Tests TrackScore method") {
                                              engine.GetPipes()[0].GetTopPipe().y2 + 100));
     engine.UpdateEngine();
     REQUIRE(engine.GetScore() == 1);
-  }SECTION("Checks if score resets from 1 to 0 after bird dies") {
+  }
+  
+  SECTION("Checks if score resets from 1 to 0 after bird dies") {
     flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
     engine.GetBird() = flappybird::Bird(870,
                                         bird_image,
@@ -70,6 +88,21 @@ TEST_CASE("Tests if new pipe is being created every 225 frames") {
   ci::gl::Texture2dRef bird_image;
   flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
   for (int i = 0; i < 225; i++) {
+    engine.UpdateEngine();
+    // To keep bird from falling and resetting game
+    engine.GetBird() = flappybird::Bird(870,
+                                        bird_image,
+                                        vec2(engine.GetPipes()[0].GetTopPipe().x1,
+                                             engine.GetPipes()[0].GetTopPipe().y2 + 100));
+  }
+  REQUIRE(engine.GetPipes().size() == 2);
+}
+
+TEST_CASE("Tests to make sure pipes list is not increasing infinitely ") {
+  ci::gl::Texture2dRef bird_image;
+  flappybird::Engine engine = flappybird::Engine(870, bird_image, 100);
+  REQUIRE(engine.GetPipes().size() == 1);
+  for (int i = 0; i < 3000; i++) {
     engine.UpdateEngine();
     // To keep bird from falling and resetting game
     engine.GetBird() = flappybird::Bird(870,

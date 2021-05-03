@@ -25,7 +25,6 @@ void Engine::DrawEngine() {
                              glm::vec2(window_size_ / kXScorePositionRatio, window_size_ / kYScorePositionRatio),
                              ci::Color(kScoreColor),
                              ci::Font(kScoreFont, kScoreFontSize));
-
 }
 
 void Engine::UpdateEngine() {
@@ -64,7 +63,7 @@ bool Engine::HasCollided() {
     return true;
   }
 
-  // Checks if bird has hit any pipes
+  // Checks if bird has hit any pipes or is off screen
   for (Pipe pipe : pipes_) {
     if (bird_.GetBody().intersects(pipe.GetTopPipe()) || bird_.GetBody().intersects(pipe.GetBottomPipe())
         || bird_.GetPosition().x + bird_.GetRadius() >= pipe.GetBottomPipe().getX1()
